@@ -1,0 +1,12 @@
+# AUTH0_CLIENT_ID="3ECxf5iUBPiA9mkr8sLSVq3mORf01XIo"
+# AUTH0_ISSUER="https://dev-10cofkyh78el00pn.us.auth0.com"
+# AUTH0_CLIENT_SECRET="D0seRPV9Mn8oNCCZLz3EvC04zt5gbOBcZnygxehOoTBHwd_dyGKIt12D9GQzz8gD"
+
+# NEXTAUTH_URL="http://localhost:3004"
+AUTH0_CLIENT_ID="cZEJmC8AZ3hDZ4WrTwspouLmMOLXHttC"
+AUTH0_ISSUER="https://dev-10cofkyh78el00pn.us.auth0.com"
+AUTH0_CLIENT_SECRET="sr7KC0w4-nlxNKhK4PW_c7wZ-dYz5dUxysUW7klE96UYLcMOj9CM6RzGwL43nsX9"
+
+NEXTAUTH_URL="http://localhost:3003"
+
+

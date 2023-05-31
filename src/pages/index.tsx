@@ -1,118 +1,134 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
+  console.log({ session, status });
+  if (status === "authenticated") {
+    return (
+      <>
+        <p>Signed in as {session?.user?.email}</p>
+        <Link href={"/api/auth/signout"}>Signout</Link>
+      </>
+    );
+  }
+
+  //https://dev-10cofkyh78el00pn.us.auth0.com/u/consent?state=hKFo2SB1aE1jWlRzb0xuY1FmdmxRbFJLQmEtS0J5YndIM1JzZqFup2NvbnNlbnSjdGlk2SBqRXpjMHg4MjJSZ3hlZGNUNG1ZNEVtVXMycW13N2ZOb6NjaWTZIG5iNkJabVI5ak9VQWFEQzdKNmFoUmNIT3pPTmFVdDE0
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <>
+      <div></div>
+      <Link href={"/api/auth/signin"}>Sign in</Link>
+    </>
+  );
 }
+
+// AUTH0_CLIENT_ID = jPlfOEfyZdho0xMjq3FMcc5KzTA0fASv
+// AUTH0_CLIENT_SECRET = FtT10kRRabjxpLItpDE3ViV_rYv23lAB0bDQ45adU4oRQBLHknWnXXJN1s8kL2wp
+// AUTH0_ISSUER = https://dev-b530nocl73roqri2.us.auth0.com/
+
+// const bcrypt = require('bcrypt');
+// const pg = require("pg");
+// var pool = new pg.Pool({
+//       user: '**',
+//       host: '**',
+//       database: '**',
+//       password: '**',
+//       port: **,
+// });
+
+// pool.connect(function (err, client, done) {
+//   if (err)
+//     console.log('error');
+//   { console.log(err); return callback(err); }
+
+//   const query = 'UPDATE auth_user SET email_Verified = true WHERE email_Verified = false AND email = $1';
+//   client.query(query, [email], function (err, result) {
+//     done();
+// console.log(err);
+//     return callback(err, result && result.rowCount > 0);
+//   });
+// });
+// }
+
+// function login(email, password, callback) {
+//   //this example uses the "pg" library
+//   //more info here: https://github.com/brianc/node-postgres
+
+//   const bcrypt = require('bcrypt');
+//   const postgres = require('pg');
+
+//   let pool = new pg.Pool({
+//         user: 'postgres',
+//         host: 'localhost',
+//         database: 'postgres',
+//         password: '12341234',
+//         port: 5432,
+//   });
+
+//   //const conString = 'postgres://postgres:12341234@localhost:5432/postgres';
+//   const conString = 'postgres://aqnvzgdv:ojejNDbCVzyhbpYerseylLlo239D4aHG@drona.db.elephantsql.com/aqnvzgdv';
+//   pool.connect(function (err, client, done) {
+
+//     if (err) return callback(err);
+
+//     const query = 'SELECT id, nickname, email, password FROM users WHERE email = $1';
+//     client.query(query, [email], function (err, result) {
+//       // NOTE: always call `done()` here to close
+//       // the connection to the database
+//       done();
+
+//       if (err || result.rows.length === 0) return callback(err || new WrongUsernameOrPasswordError(email));
+
+//       const user = result.rows[0];
+
+// //      bcrypt.compare(password, user.password, function (err, isValid) {
+//   //      if (err || !isValid) return callback(err || new WrongUsernameOrPasswordError(email));
+
+//         return callback(null, {
+//          	user_id: user.id,
+//           email: user.email
+//         });
+//     //  });
+//     });
+//   });
+// }
+
+// function create(user, callback) {
+//   //this example uses the "pg" library
+//   //more info here: https://github.com/brianc/node-postgres
+
+//   const bcrypt = require("bcrypt");
+//   const postgres = require("pg");
+
+//   let pool = new postgres.Pool({
+//     user: "postgres",
+//     host: "localhost",
+//     database: "postgres",
+//     password: "12341234",
+//     port: 5432,
+//   });
+
+//   // const conString = 'postgres://aqnvzgdv:ojejNDbCVzyhbpYerseylLlo239D4aHG@drona.db.elephantsql.com/aqnvzgdv';
+//   pool.connect(function (err, client, done) {
+//     if (err) return callback(err);
+
+//     bcrypt.hash(user.password, 10, function (err, hashedPassword) {
+//       if (err) return callback(err);
+
+//       const query = "INSERT INTO users(email, password) VALUES ($1, $2)";
+//       client.query(query, [user.email, hashedPassword], function (err, result) {
+//         // NOTE: always call `done()` here to close
+//         // the connection to the database
+//         done();
+
+//         return callback(err);
+//       });
+//     });
+//   });
+// }
